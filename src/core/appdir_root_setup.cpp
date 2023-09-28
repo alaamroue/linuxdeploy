@@ -69,7 +69,7 @@ namespace linuxdeploy {
                     ldLog() << "iconPath.stem()= -" << iconPath.stem() << "- "  << std::endl;
                     const bool matchesFilenameWithExtension = iconPath.filename() == iconEntry.value();
                     ldLog() << "matchesFilenameWithExtension= -" << matchesFilenameWithExtension << "- "  << std::endl;
-                    ldLog() << "iconPath.stem() == iconEntry.value()= -" << iconPath.stem() == iconEntry.value() << "- "  << std::endl;
+                    ldLog() << "iconPath.stem() == iconEntry.value()= -" << (iconPath.stem() == iconEntry.value()) << "- "  << std::endl;
 
                     if (iconPath.stem() == iconEntry.value() || matchesFilenameWithExtension) {
                         ldLog() << "checkpoint1"  << std::endl;
