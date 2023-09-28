@@ -67,11 +67,22 @@ namespace linuxdeploy {
                     ldLog() << "iconPath.filename()= -" << iconPath.filename() << "- " << std::endl;
                     ldLog() << "iconEntry.value()= -" << iconEntry.value() << "- " << std::endl;
                     ldLog() << "iconPath.stem()= -" << iconPath.stem() << "- "  << std::endl;
-                    const bool matchesFilenameWithExtension = iconPath.filename() == iconEntry.value();
+
+                    auto temp = iconEntry.value();
+                    
+                    size_t pos = temp.find_last_of('\r');
+                
+                    // Check if '\r' is found and erase it if it is
+                    if (pos != std::string::npos) {
+                        temp.erase(pos);
+                    }
+                    ldLog() << "temp= -" << temp << "- " << std::endl;
+                    
+                    const bool matchesFilenameWithExtension = iconPath.filename() == temp;
                     ldLog() << "matchesFilenameWithExtension= -" << matchesFilenameWithExtension << "- "  << std::endl;
                     ldLog() << "iconPath.stem() == iconEntry.value()= -" << (iconPath.stem() == iconEntry.value()) << "- "  << std::endl;
 
-                    if (iconPath.stem() == iconEntry.value() || matchesFilenameWithExtension) {
+                    if (iconPath.stem() == temp || matchesFilenameWithExtension) {
                         ldLog() << "checkpoint1"  << std::endl;
                         if (matchesFilenameWithExtension) {
                             ldLog() << "checkpoint2"  << std::endl;
