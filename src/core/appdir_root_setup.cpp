@@ -64,6 +64,9 @@ namespace linuxdeploy {
                 for (const auto& iconPath : foundIconPaths) {
                     ldLog() << LD_DEBUG << "Icon found:" << iconPath << std::endl;
 
+                    ldLog() << LD_WARNING << "iconPath.filename()= " << iconPath.filename() << std::endl;
+                    ldLog() << LD_WARNING << "iconEntry.value()" << iconEntry.value() << std::endl;
+                    ldLog() << LD_WARNING << "iconPath.stem()" << iconPath.stem() << std::endl;
                     const bool matchesFilenameWithExtension = iconPath.filename() == iconEntry.value();
 
                     if (iconPath.stem() == iconEntry.value() || matchesFilenameWithExtension) {
