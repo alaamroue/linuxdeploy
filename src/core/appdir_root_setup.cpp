@@ -64,19 +64,25 @@ namespace linuxdeploy {
                 for (const auto& iconPath : foundIconPaths) {
                     ldLog() << LD_DEBUG << "Icon found:" << iconPath << std::endl;
 
-                    ldLog() << LD_WARNING << "iconPath.filename()= " << iconPath.filename() << std::endl;
-                    ldLog() << LD_WARNING << "iconEntry.value()" << iconEntry.value() << std::endl;
-                    ldLog() << LD_WARNING << "iconPath.stem()" << iconPath.stem() << std::endl;
+                    ldLog() << "iconPath.filename()= -" << iconPath.filename() << "- " << std::endl;
+                    ldLog() << "iconEntry.value()= -" << iconEntry.value() << "- " << std::endl;
+                    ldLog() << "iconPath.stem()= -" << iconPath.stem() << "- "  << std::endl;
                     const bool matchesFilenameWithExtension = iconPath.filename() == iconEntry.value();
+                    ldLog() << "matchesFilenameWithExtension= -" << matchesFilenameWithExtension << "- "  << std::endl;
+                    ldLog() << "iconPath.stem() == iconEntry.value()= -" << iconPath.stem() == iconEntry.value() << "- "  << std::endl;
 
                     if (iconPath.stem() == iconEntry.value() || matchesFilenameWithExtension) {
+                        ldLog() << "checkpoint1"  << std::endl;
                         if (matchesFilenameWithExtension) {
+                            ldLog() << "checkpoint2"  << std::endl;
                             ldLog() << LD_WARNING << "Icon= entry filename contains extension" << std::endl;
                         }
+                        ldLog() << LD_WARNING << "checkpoint3"  << std::endl;
 
                         ldLog() << "Deploying icon to AppDir root:" << iconPath << std::endl;
 
                         if (!appDir.createRelativeSymlink(iconPath, appDir.path())) {
+                            ldLog() << "checkpoint4"  << std::endl;
                             ldLog() << LD_ERROR << "Failed to create symlink for icon in AppDir root:" << iconPath << std::endl;
                             return false;
                         }
